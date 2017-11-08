@@ -9,11 +9,11 @@ const mysqlCon = mysql.createConnection({
     password: "password"
 });
 
-mysqlCon.connect(function(err){
-    if (err) throw err;
-    console.log("Connected to mysql!");
-    
-}); 
+//mysqlCon.connect(function(err){
+//    if (err) throw err;
+//    console.log("Connected to mysql!");
+//    
+//}); 
 
 
 app.get('/', function (req, res) {
@@ -49,7 +49,7 @@ app.get('/routes', function (req, res) {
 app.get('/routes/:routeName', function (req, res) {
     if (req.params && req.params.routeName) {
         let sampleJSON = {
-            name: routeName,
+            name: req.params.routeName,
             years: [
                 1516
             ],
