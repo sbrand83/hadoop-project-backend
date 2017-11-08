@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const app = express();
 
@@ -15,6 +16,7 @@ const mysqlCon = mysql.createConnection({
 //    
 //}); 
 
+app.use(cors());
 
 app.get('/', function (req, res) {
     res.send('hello world');
