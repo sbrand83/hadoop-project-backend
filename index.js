@@ -5,8 +5,7 @@ const cors = require('cors');
 const app = express();
 
 const mysqlCon = mysql.createConnection({
-    port: "3306",
-    host: "104.154.149.157",
+    host: "localhost",
     user: "root",
     password: "",
     database: "project"
@@ -24,62 +23,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/routes', function (req, res) {
-    let sampleJSON = {
-        routes: [
-            {
-                name: "Route A",
-                years: [
-                    1314,
-                    1415,
-                    1516,
-                    1617
-                ],
-                crimes: [
-                    20,
-                    50,
-                    30,
-                    10
-                ]
-            },
-            {
-                name: "Route B",
-                years: [
-                    1314,
-                    1415,
-                    1516,
-                    1617
-                ],
-                crimes: [
-                    40,
-                    30,
-                    50,
-                    20
-                ]
-            }
-        ]
-    };
-    res.json(sampleJSON);
+    mysqlCon.query("SELECT DISTINCT routename FROM routecrimesbyyear", function(error, results, fields){
+        res.json(results);
+    });
 });
 
 app.get('/routes/:routeName', function (req, res) {
     if (req.params && req.params.routeName) {
-        let sampleJSON = {
-            name: req.params.routeName,
-		years: [
-		    1314,
-		    1415,
-		    1516,
-		    1617
-		],
-		crimes: [
-		    20,
-		    50,
-		    30,
-		    10
-		]
-        };
-        res.json(sampleJSON);
+        mysqlCon.query("SELECT * FROM routecrimesbyyear WHERE routename = '" + req.params.routeName + "'", function(error, results, fields){
+	    res.json(results);
+	});
     }
 });
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(8888, () => console.log('Example app listening on port 8888!'));
