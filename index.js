@@ -28,19 +28,31 @@ app.get('/routes', function (req, res) {
             {
                 name: "Route A",
                 years: [
-                    1516
+                    1314,
+                    1415,
+                    1516,
+                    1617
                 ],
                 crimes: [
-                    20
+                    20,
+                    50,
+                    30,
+                    10
                 ]
             },
             {
                 name: "Route B",
                 years: [
-                    1516
+                    1314,
+                    1415,
+                    1516,
+                    1617
                 ],
                 crimes: [
-                    22
+                    40,
+                    30,
+                    50,
+                    20
                 ]
             }
         ]
@@ -52,12 +64,18 @@ app.get('/routes/:routeName', function (req, res) {
     if (req.params && req.params.routeName) {
         let sampleJSON = {
             name: req.params.routeName,
-            years: [
-                1516
-            ],
-            crimes: [
-                20
-            ]
+		years: [
+		    1314,
+		    1415,
+		    1516,
+		    1617
+		],
+		crimes: [
+		    20,
+		    50,
+		    30,
+		    10
+		]
         };
         res.json(sampleJSON);
     }
