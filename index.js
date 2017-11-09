@@ -5,15 +5,16 @@ const cors = require('cors');
 const app = express();
 
 const mysqlCon = mysql.createConnection({
+    port: "3306",
     host: "104.154.149.157",
     user: "root",
-    password: ""
+    password: "",
+    database: "project"
 });
 
 mysqlCon.connect(function(err){
    if (err) throw err;
-   console.log("Connected to mysql!");
-   
+   console.log("Connected to mysql!"); 
 }); 
 
 app.use(cors());
